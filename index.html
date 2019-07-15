@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GifTastic</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Search</div>
+            
+            <div class="row">
+                <div class="col-9">
+                    <div class="card-body">
+                        <div id="buttonList"></div>
+                    </div> 
+                </div>
+                <div class="col-3">
+                   <div class="card rounded-0">
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="txtCharacter">Add a Character</label>
+                                    <input type="text" class="form-control" id="txtCharacter" maxlength="50">
+                                    <input type="submit" class="btn btn-secondary mt-2 btn-Add" value="Add">
+                                </div>
+                            </form>
+                        </div>   
+                   </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-body searchResults">
+
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+    <script type="text/javascript" src="assets/javascript/script.js"></script>
+</body>
+</html>
