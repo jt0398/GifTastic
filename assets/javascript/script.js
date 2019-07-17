@@ -1,26 +1,26 @@
 var searchList = ["Superman",
-"Batman",
-"Spider-Man",
-"Green Lantern",
-"Thor",
-"Captain America",
-"Wonder Woman",
-"Flash ",
-"Hulk",
-"Wolverine",
-"Supergirl",
-"Robin ",
-"Aquaman",
-"Black Panther",
-"Jean Grey",
-"Cyclops",
-"Rogue",
-"Leonardo",
-"Donatello",
-"Michelangelo",
-"Raphael",
-"Professor X",
-"Doctor Strange"
+    "Batman",
+    "Spider-Man",
+    "Green Lantern",
+    "Thor",
+    "Captain America",
+    "Wonder Woman",
+    "Flash ",
+    "Hulk",
+    "Wolverine",
+    "Supergirl",
+    "Robin ",
+    "Aquaman",
+    "Black Panther",
+    "Jean Grey",
+    "Cyclops",
+    "Rogue",
+    "Leonardo",
+    "Donatello",
+    "Michelangelo",
+    "Raphael",
+    "Professor X",
+    "Doctor Strange"
 ];
 
 function loadContent()
@@ -34,12 +34,6 @@ function loadContent()
 
         $("#buttonList").append($button);
     });
-}
-
-$(document).ready(function(){
-
-    loadContent(); 
-
 
     $(".btnCharacter").on("click",function(){
     
@@ -60,7 +54,20 @@ $(document).ready(function(){
 
                 let divImage = $("<div>");
 
-                divImage.attr("class","m-2 divCharacter");
+                let divStyle = "m-2 divCharacter";
+
+                console.log(i + " = " + (i % 4 == 0));
+
+                if (i % 4 == 0 && i > 0)
+                {
+                    divStyle += " clearfix";
+                }
+                else
+                {
+                    divStyle += " float-left";
+                }
+
+                divImage.attr("class",divStyle);
 
                 let image = $("<img>");  
 
@@ -71,6 +78,8 @@ $(document).ready(function(){
                 image.attr("data-animate",results[i].images.fixed_width.url);  
                 
                 image.on("click",function(){
+
+                    console.log("test");
 
                     let state = $(this).attr("data-state");
             
@@ -98,19 +107,20 @@ $(document).ready(function(){
             }
         });
     });
+}
+
+$(document).ready(function(){
+
+    loadContent();   
    
 
     $("#btnAdd").on("click",function(event){   
 
-        event.preventDefault();
-        
-        alert("test");    
+        event.preventDefault();     
 
-        let addCharacter = $("txtCharacter").val();
+        let addCharacter = $("#txtCharacter").val().trim();        
 
-        console.log(addCharacter);
-
-        $(".message").text();
+        $(".message").text("");
 
         if(searchList.indexOf(addCharacter) < 0)
         {
