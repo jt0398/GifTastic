@@ -30,7 +30,7 @@ function loadContent()
     searchList.forEach(function(search){
         $button = $("<button>");
 
-        $button.attr("class","btn btn-primary m-2 btnCharacter");
+        $button.attr("class","btn btn-success m-2 btnCharacter");
 
         $button.text(search).val(search);         
 

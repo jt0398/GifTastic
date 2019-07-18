@@ -1,3 +1,7 @@
+body {
+    background: url('../images/comic.jpg');   
+}
+
 .divCharacter
 {       
     width: 200px;
