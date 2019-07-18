@@ -11,19 +11,20 @@
 <body>
     <div class="container">
         <div class="card">
-            <div class="card-header">Search</div>
-            
+            <div class="card-header">Superheroes</div>            
             <div class="row">
                 <div class="col-9">
                     <div class="card-body">
+                        <!--Display superheroes names in buttons-->
                         <div id="buttonList"></div>
                     </div> 
                 </div>
                 <div class="col-3">
                    <div class="card rounded-0">
                         <div class="card-body">
+                            <!--Form to add a new superhero in the list-->
                             <form>
-                                <div class="message"></div>
+                                <div class="message text-danger font-weight-bold"></div>
                                 <div class="form-group">
                                     <label for="txtCharacter">Add a Character</label>
                                     <input type="text" class="form-control" id="txtCharacter" maxlength="50">
@@ -37,6 +38,7 @@
             <div class="row">
                 <div class="col-12">
                     <hr>
+                    <!--Displays gif images returned from Giphy website -->
                     <div class="card-body searchResults">
 
                     </div>

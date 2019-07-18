@@ -1,3 +1,4 @@
+//List of superheroes
 var searchList = ["Superman",
     "Batman",
     "Spider-Man",
@@ -25,6 +26,7 @@ var searchList = ["Superman",
 
 function loadContent()
 {
+    //Creates a button for each superhero name in the list
     searchList.forEach(function(search){
         $button = $("<button>");
 
@@ -35,51 +37,52 @@ function loadContent()
         $("#buttonList").append($button);
     });
 
+    //When a specific superhero button is clicked
     $(".btnCharacter").on("click",function(){
     
+        //Clears out the search result area
         $(".searchResults").empty();
 
+        //Get the superhero from the button text
         let search = $(this).val();
 
+        //Replaces space in the superhero name with a plus sign
         search = search.replace(" ","+");
 
+        /* Builds the Giphy API URL 
+            Parameters passed are the superhero name, number of images returned which is 10 and API Key
+        */
         let queryURL = `https://api.giphy.com/v1/gifs/search?q=${search}&limit=10&api_key=DguBVPmluFdrUwmm1gsbudlTW0BE9EM4`;
         
 
+        //AJAX call is executed
         $.ajax(queryURL).then(function(response){
             let results = response.data;
         
-
+            //For each gif image returned, create an image element
             for(let i = 0; i < results.length; i++){
 
                 let divImage = $("<div>");
 
-                let divStyle = "m-2 divCharacter";
-
-                console.log(i + " = " + (i % 4 == 0));
-
+                //Organizes 4 image elements per row
                 if (i % 4 == 0 && i > 0)
                 {
-                    divStyle += " clearfix";
-                }
-                else
-                {
-                    divStyle += " float-left";
-                }
+                    $(".searchResults").append("<div class='clearfix'>&nbsp;</div>");
+                }              
 
-                divImage.attr("class",divStyle);
+                divImage.attr("class","m-2 divCharacter float-left");
 
+                //Creates an image element
                 let image = $("<img>");  
 
-                image.attr("class","imgCharacter");
-                image.attr("data-state","still");
-                image.attr("src",results[i].images.fixed_width_still.url);
-                image.attr("data-still",results[i].images.fixed_width_still.url);
-                image.attr("data-animate",results[i].images.fixed_width.url);  
+                image.attr("class","imgCharacter"); //set CSS style
+                image.attr("data-state","still"); //set data-state attribute
+                image.attr("src",results[i].images.fixed_width_still.url); //set initial src attribute
+                image.attr("data-still",results[i].images.fixed_width_still.url); //set data-still attribute with the gif still URL
+                image.attr("data-animate",results[i].images.fixed_width.url);  //set data-animate attribute with the gif default URL
                 
-                image.on("click",function(){
-
-                    console.log("test");
+                //When the image is clicked, the src attribute value changes between the still and animated image URL
+                image.on("click",function(){                    
 
                     let state = $(this).attr("data-state");
             
@@ -95,13 +98,17 @@ function loadContent()
                     }
                 });
 
+                //Image element is appended to a div element
                 divImage.append(image);
 
+                //Get rating of the image
                 let rating = results[i].rating;
                 rating = rating.toUpperCase();
 
+                //Appends a p tag element to the div element
                 divImage.append($("<p>").text("Rating: " + rating));
 
+                //Appends div element to result
                 $(".searchResults").append(divImage);
                 
             }
@@ -109,13 +116,16 @@ function loadContent()
     });
 }
 
+//On page load
 $(document).ready(function(){
 
+    //Creates a button for each superhero name in the list and assign event handler for the button
     loadContent();   
    
-
+    //Assigns callback function to the click event of the Add button
     $("#btnAdd").on("click",function(event){   
 
+        //Prevents the form from being sent to the server
         event.preventDefault();     
 
         let addCharacter = $("#txtCharacter").val().trim();        
@@ -134,7 +144,6 @@ $(document).ready(function(){
         {
             $(".message").text(addCharacter + " is already in the list.");
         }
-
         
     });
 });
